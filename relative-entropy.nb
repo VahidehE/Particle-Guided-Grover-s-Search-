@@ -1,0 +1,165 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5178,        155]
+NotebookOptionsPosition[      4575,        135]
+NotebookOutlinePosition[      4971,        151]
+CellTagsIndexPosition[      4928,        148]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Gaussian", " ", "parameters"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"mu", "=", "10"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"sigma", "=", 
+     RowBox[{"10", "^", "3"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"gaussianPDF", "[", "x_", "]"}], ":=", 
+     RowBox[{"PDF", "[", 
+      RowBox[{
+       RowBox[{"NormalDistribution", "[", 
+        RowBox[{"mu", ",", "sigma"}], "]"}], ",", "x"}], "]"}]}], ";"}], "\n",
+    "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Function", " ", "to", " ", "compute", " ", "exact", " ", "discrete", " ",
+      "KL", " ", "divergence", " ", "between", " ", 
+     RowBox[{"Uniform", "[", 
+      RowBox[{"a", ",", "b"}], "]"}], " ", "and", " ", "Gaussian"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"KLDiscreteUniformVsGaussian", "[", 
+     RowBox[{"a_", ",", "b_"}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"xs", "=", 
+         RowBox[{"Range", "[", 
+          RowBox[{"a", ",", "b"}], "]"}]}], ",", 
+        RowBox[{"n", "=", 
+         RowBox[{"b", "-", "a", "+", "1"}]}], ",", 
+        RowBox[{"p", "=", 
+         RowBox[{"1.0", "/", 
+          RowBox[{"(", 
+           RowBox[{"b", "-", "a", "+", "1"}], ")"}]}]}]}], "}"}], ",", 
+      RowBox[{"Total", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"p", "*", 
+          RowBox[{"Log", "[", 
+           RowBox[{"p", "/", 
+            RowBox[{"gaussianPDF", "[", "#", "]"}]}], "]"}]}], "&"}], "/@", 
+        "xs"}], "]"}]}], "]"}]}], "\n", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Compute", " ", "for", " ", "the", " ", "two", " ", "uniform", " ", 
+     "distributions"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"kl1", "=", 
+     RowBox[{"KLDiscreteUniformVsGaussian", "[", 
+      RowBox[{"1", ",", 
+       RowBox[{"Floor", "[", 
+        RowBox[{
+         RowBox[{"10", "^", "6"}], "/", "4"}], "]"}]}], "]"}]}], ";"}], "\n", 
+   
+   RowBox[{
+    RowBox[{"kl2", "=", 
+     RowBox[{"KLDiscreteUniformVsGaussian", "[", 
+      RowBox[{"1", ",", 
+       RowBox[{"Floor", "[", 
+        RowBox[{
+         RowBox[{"10", "^", "7"}], "/", "4"}], "]"}]}], "]"}]}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Output", " ", "results"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{"\"\<Exact KL(U[1, 10^6/4] || N(10, 10^6)) = \>\"", ",", "kl1"}], 
+    "]"}], "\n", 
+   RowBox[{"Print", "[", 
+    RowBox[{"\"\<Exact KL(U[1, 10^7/4] || N(10, 10^6)) = \>\"", ",", "kl2"}], 
+    "]"}], "\n", "\n", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.960277859871359*^9, 3.960277866766776*^9}, {
+  3.960277974504816*^9, 3.960277982751115*^9}, {3.960278431327509*^9, 
+  3.960278435701295*^9}},
+ CellLabel->"In[25]:=",ExpressionUUID->"db4375f5-f68d-43c8-96ac-db303e33f6b1"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Exact KL(U[1, 10^6/4] || N(10, 10^6)) = \"\>", 
+   "\[InvisibleSpace]", "10410.876689365341`"}],
+  SequenceForm[
+  "Exact KL(U[1, 10^6/4] || N(10, 10^6)) = ", 10410.876689365341`],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.9602777546531878`*^9, 3.960277778088986*^9}, 
+   3.960278244294818*^9, 3.9602786352957363`*^9},
+ CellLabel->
+  "During evaluation of \
+In[25]:=",ExpressionUUID->"a00f22fc-e400-4b6c-af1f-7c615e76e9f4"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Exact KL(U[1, 10^7/4] || N(10, 10^6)) = \"\>", 
+   "\[InvisibleSpace]", "1.0416478866042722`*^6"}],
+  SequenceForm[
+  "Exact KL(U[1, 10^7/4] || N(10, 10^6)) = ", 1.0416478866042722`*^6],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.9602777546531878`*^9, 3.960277778088986*^9}, 
+   3.960278244294818*^9, 3.960278635296788*^9},
+ CellLabel->
+  "During evaluation of \
+In[25]:=",ExpressionUUID->"edc15730-6444-491d-bebb-1a37db914bcc"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1440, 847},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"13.2 for Mac OS X ARM (64-bit) (November 18, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"4d65b9db-a03a-47fa-99c8-0ab859a810b5"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 2971, 81, 409, "Input",ExpressionUUID->"db4375f5-f68d-43c8-96ac-db303e33f6b1"],
+Cell[CellGroupData[{
+Cell[3576, 107, 482, 11, 24, "Print",ExpressionUUID->"a00f22fc-e400-4b6c-af1f-7c615e76e9f4"],
+Cell[4061, 120, 486, 11, 25, "Print",ExpressionUUID->"edc15730-6444-491d-bebb-1a37db914bcc"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
