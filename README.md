@@ -10,4 +10,5 @@ In this work, we use QSearch as a baseline to evaluate the performance of PGGS. 
 
 The results of this benchmarking study are presented in Chapter 3 of the PhD thesis "Hybrid Quantum Search Algorithms", submitted to the University of Cologne.
 
+The Mathematica notebook used to calculate the relative entropies discussed at the end of Chapter 3 has also been included here.
 
